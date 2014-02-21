@@ -24,5 +24,3 @@ Class Sql
                 ';', $this->_user, $this->_passwd);
     }
 }
-
-?>

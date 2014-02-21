@@ -56,8 +56,8 @@ class Imap
          */
 	public function getMailBoxDirectory()
 	{
-            return (imap_list($this->_mail, "{imap.gmail.com:993/imap/ssl}",
-                            "*"));
+            return imap_list($this->_mail, "{imap.gmail.com:993/imap/ssl}",
+                            "*");
 	}
 	
         /**
@@ -68,7 +68,7 @@ class Imap
          */
 	public function getCleanFolder($folder)
 	{
-            return (str_replace('{imap.gmail.com:993/imap/ssl}', '', $folder));
+            return str_replace('{imap.gmail.com:993/imap/ssl}', '', $folder);
 	}
         
         /**
@@ -82,7 +82,7 @@ class Imap
         public function getLastDateModification()
         {
             $nbmsg_date = imap_mailboxmsginfo($this->_mail);
-            return (intval($nbmsg_date->Date));
+            return intval($nbmsg_date->Date);
         }
         
         /**
@@ -93,7 +93,7 @@ class Imap
         public function getDriver()
         {
             $nbmsg_driver = imap_mailboxmsginfo($this->_mail);
-            return (intval($nbmsg_driver->Driver));
+            return intval($nbmsg_driver->Driver);
         }
         
         /**
@@ -104,7 +104,7 @@ class Imap
         public function getNameMailbox()
         {
             $nbmsg_mailbox = imap_mailboxmsginfo($this->_mail);
-            return (intval($nbmsg_mailbox->Mailbox));
+            return intval($nbmsg_mailbox->Mailbox);
         }
 	
         /**
@@ -115,7 +115,7 @@ class Imap
          */
 	public function getNumMessages()
 	{
-            return (intval(imap_num_msg($this->_mail)));
+            return intval(imap_num_msg($this->_mail));
 	}
 	
         /**
@@ -127,7 +127,7 @@ class Imap
 	public function getNumUnreadMessages()
 	{
             $nbmsg_unread = imap_mailboxmsginfo($this->_mail);
-            return (intval($nbmsg_unread->Unread));
+            return intval($nbmsg_unread->Unread);
 	}
 	
         /**
@@ -139,7 +139,7 @@ class Imap
 	public function getNumNewMessages()
 	{
             $nbmsg_news = imap_mailboxmsginfo($this->_mail);
-            return (intval($nbmsg_news->Recent));
+            return intval($nbmsg_news->Recent);
 	}
 	
         /**
@@ -151,7 +151,7 @@ class Imap
         public function getNumDeletedMessages()
         {
            $nbmsg_deleted = imap_mailboxmsginfo($this->_mail);
-           return (intval($nbmsg_deleted->Deleted));
+           return intval($nbmsg_deleted->Deleted);
         }
         
         /**
@@ -163,7 +163,7 @@ class Imap
         public function getNumSize()
         {
             $nbmsg_size = imap_mailboxmsginfo($this->_mail);
-            return (intval($nbmsg_size->Size));
+            return intval($nbmsg_size->Size);
         }
         
         /**
@@ -203,7 +203,7 @@ class Imap
 	public function getAllMessages()
 	{
             $mailsId = imap_search($this->_mail, 'ALL');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -243,7 +243,7 @@ class Imap
 	public function getAnsweredMessages()
 	{
             $mailsId = imap_search($this->_mail, 'ANSWERED');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -285,7 +285,7 @@ class Imap
 	public function getMessagesWithBcc($bcc)
 	{
             $mailsId = imap_search($this->_mail, 'BCC "' . $bcc . '"');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -328,7 +328,7 @@ class Imap
 	public function getMessagesBefore($date)
 	{
             $mailsId = imap_search($this->_mail, 'BEFORE "'.$date.'"');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -370,7 +370,7 @@ class Imap
 	public function getMessagesWithBody($body)
 	{
             $mailsId = imap_search($this->_mail, 'BODY "'.$body.'"');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -412,7 +412,7 @@ class Imap
 	public function getMessagesWithCc($cc)
 	{
             $mailsId = imap_search($this->_mail, 'CC "'.$cc.'"');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -452,7 +452,7 @@ class Imap
 	public function getDeletedMessages()
 	{
             $mailsId = imap_search($this->_mail, 'DELETED');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -494,7 +494,7 @@ class Imap
 	public function getMessagesFrom($from)
 	{
             $mailsId = imap_search($this->_mail, 'FROM "'.$from.'"');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -534,7 +534,7 @@ class Imap
 	public function getNewMessages()
 	{
             $mailsId = imap_search($this->_mail, 'NEW');
-            return ($this->_getMessages($mailsId));	
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -576,7 +576,7 @@ class Imap
 	public function getMessagesOnDate($date)
 	{
             $mailsId = imap_search($this->_mail, 'ON "'.$date.'"');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -618,7 +618,7 @@ class Imap
 	public function getMessagesWithSubject($subject)
 	{
             $mailsId = imap_search($this->_mail, 'SUBJECT "'.$subject.'"');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -660,7 +660,7 @@ class Imap
 	public function getMessagesTo($to)
 	{
             $mailsId = imap_search($this->_mail, 'TO "'.$to.'"');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -701,7 +701,7 @@ class Imap
 	public function getSeenMessages()
 	{
             $mailsId = imap_search($this->_mail, 'SEEN');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -742,7 +742,7 @@ class Imap
 	public function getUnansweredMessages()
 	{
             $mailsId = imap_search($this->_mail, 'UNANSWERED');
-            return ($this->_getMessages($mailsId));	
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -784,7 +784,7 @@ class Imap
 	public function getMessagesSince($date)
 	{
             $mailsId = imap_search($this->_mail, 'SINCE "'.$date.'"');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -824,7 +824,7 @@ class Imap
 	public function getUnreadMessages()
 	{
             $mailsId = imap_search($this->_mail, 'UNSEEN');
-            return ($this->_getMessages($mailsId));
+            return $this->_getMessages($mailsId);
 	}
 	
         /**
@@ -837,7 +837,7 @@ class Imap
          */
 	public function getBodyMessage($id)
 	{
-            return (imap_body($this->_mail, intval($id)));
+            return imap_body($this->_mail, intval($id));
 	}
         
         /**
@@ -853,12 +853,16 @@ class Imap
             $elements = imap_mime_header_decode($mails->subject);
             
             if ($elements[0]->charset == 'default')
+            {
                 $part = 1;
+            }
             else
+            {
                 $part = 5;
-            
-            return (imap_fetchbody($this->_mail, intval($id), $part,
-                    FT_INTERNAL));
+            }
+
+            return imap_fetchbody($this->_mail, intval($id), $part,
+                   FT_INTERNAL);
         }
         
         /**
@@ -885,12 +889,17 @@ class Imap
         {
             $elements = imap_mime_header_decode($string);
             
-            if ($part == 'text')
-                return ($elements[0]->text);
+            if ($part == 'text') {
+            return ($elements[0]->text);
+            }
             else if ($part == 'charset')
-                return ($elements[0]->charset);
+            {
+                return $elements[0]->charset;
+            }
             else
-                return ('Erreur!');
+            {
+                return "Erreur!";
+            }
         }
         
         /**
@@ -933,7 +942,7 @@ class Imap
                     break;
             }
             
-            return (imap_utf8($message));                
+            return imap_utf8($message);                
         }
 	
         /**
@@ -947,18 +956,16 @@ class Imap
 	private function _getMessages($mailsId)
         {
             $i = 0;
-            if ($mailsId !== false)
-            {
-                foreach($mailsId as $mailId)
-                {
-                    $results[$i] = imap_header($this->_mail, $mailId);
-                    $i++;
-                }
-                return ($results);
+            if ($mailsId !== false) {
+            foreach ($mailsId as $mailId) {
+                $results[$i] = imap_header($this->_mail, $mailId);
+                $i++;
             }
-            else
-                return (0);
-	}
+            return ($results);
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
-
-?>

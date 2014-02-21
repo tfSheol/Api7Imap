@@ -13,8 +13,8 @@ $time->calcTime_start();
 $imap = new Imap('./', '<email@gmail.com>', '<mot_de_passe>');
 
 $mails = $imap->getUnreadMessages();
-$nbunread = $imap->getNumUnreadMessages();
-
+//$nbunread = $imap->getNumUnreadMessages();
+/*
 $i = -1;
 while (++$i < $nbunread)
 {
@@ -29,8 +29,20 @@ while (++$i < $nbunread)
     
     $imap->setSeenMessage($mails[$i]->Msgno);
 }
+*/
+foreach ($mails as $data)
+{
+    $from = $data->from[0]->mailbox.'@'.$data->from[0]->host;
+    $subject = $imap->getHeaderDecode($data->subject, 'text');
+    $message = $imap->getBodyFullDecode($data->Msgno,
+               $imap->getSimpleBodyMessage($data->Msgno));
+    
+    echo $from.'<br />';
+    echo $subject.'<br />';
+    echo $message.'<br />';
+    
+    $imap->setSeenMessage($data->Msgno);
+}
 
 $imap->closeMailBox();
 $time->calcTime_end();
-
-?>
